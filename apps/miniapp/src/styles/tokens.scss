@@ -1,0 +1,275 @@
+page {
+  background: #f5f7fb;
+  color: #1b2740;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft Yahei",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+view,
+text,
+input,
+textarea,
+button,
+view button {
+  box-sizing: border-box;
+}
+button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  border-radius: 0;
+  line-height: inherit;
+}
+button::after,
+view button::after {
+  border: 0;
+}
+button[disabled] {
+  opacity: 0.5;
+}
+input,
+textarea {
+  font: inherit;
+  color: #1b2740;
+}
+textarea {
+  width: 100%;
+}
+.page {
+  padding: 18px 18px 30px;
+  max-width: 560px;
+  margin: auto;
+}
+.page-title {
+  font-size: 25px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: -0.6px;
+  margin: 6px 0;
+}
+.subtitle {
+  font-size: 14px;
+  color: #7c88a1;
+}
+.muted {
+  color: #8993a8;
+  font-size: 13px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.section {
+  margin-top: 22px;
+}
+.section-title {
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.3px;
+}
+.card {
+  background: #fff;
+  border: 1px solid #edf1f7;
+  border-radius: 15px;
+  padding: 18px;
+  box-shadow: 0 3px 16px #4873ad03;
+}
+.primary {
+  background: linear-gradient(100deg, #2d83ff, #246aff);
+  color: #fff;
+  border-radius: 11px;
+  min-height: 48px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 5px 14px #327bff16;
+}
+.secondary {
+  background: #eef4ff;
+  border: 1px solid #dce8ff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  min-height: 44px;
+  font-size: 14px;
+  color: #4277c8;
+}
+.link {
+  color: #6481ad;
+  font-size: 13px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.chip {
+  font-size: 11px;
+  background: #eef4ff;
+  color: #4d8bdf;
+  padding: 3px 7px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  white-space: nowrap;
+  padding: 9px 15px;
+  border: 1px solid #e6ebf4;
+  border-radius: 9px;
+  font-size: 14px;
+  background: #fff;
+  min-height: 44px;
+  color: #78859e;
+}
+.pill.active {
+  background: #ecf3ff;
+  color: #2874ff;
+  border-color: #72a3ff;
+}
+.scroller {
+  width: 100%;
+  white-space: nowrap;
+}
+.scroll-items {
+  display: inline-flex;
+  gap: 8px;
+  padding: 4px 0;
+}
+.divider {
+  height: 1px;
+  background: #edf0f6;
+  margin: 20px 0;
+}
+.field {
+  margin-bottom: 18px;
+}
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 550;
+  margin-bottom: 8px;
+}
+.input {
+  background: #fff;
+  border: 1px solid #e4eaf4;
+  border-radius: 10px;
+  padding: 12px 14px;
+  min-height: 48px;
+  width: 100%;
+}
+.hint {
+  font-size: 12px;
+  color: #909bb0;
+  margin-top: 8px;
+}
+.notice {
+  border-radius: 11px;
+  padding: 14px 16px;
+  background: #edf4ff;
+  color: #6280af;
+  font-size: 13px;
+}
+.warning {
+  background: #fff4e7;
+  color: #9d7038;
+}
+.empty {
+  padding: 35px 18px;
+  text-align: center;
+  color: #8c97ac;
+  line-height: 1.9;
+}
+.small-button {
+  font-size: 13px;
+  color: #5085d4;
+  min-height: 44px;
+  padding: 10px;
+}
+.danger {
+  color: #dc6678;
+}
+.save-state {
+  font-size: 12px;
+  color: #7e92ad;
+  padding: 8px 0;
+}
+.save-state.error {
+  color: #da6678;
+}
+.sticky-action {
+  position: sticky;
+  bottom: 0;
+  background: #f5f7fb;
+  padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+}
+.reading-large {
+  font-size: 19px;
+}
+.reading-body {
+  line-height: 1.95;
+  word-break: break-word;
+}
+.reading-body .paragraph {
+  margin: 18px 0;
+  color: #48546a;
+}
+.reading-body .heading {
+  font-size: 19px;
+  font-weight: 650;
+  margin: 28px 0 12px;
+  padding-left: 12px;
+  position: relative;
+  color: #1a273e;
+}
+.reading-body .heading:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 18px;
+  background: #287cff;
+  border-radius: 2px;
+}
+.reading-body .list-item {
+  padding: 6px 0 6px 16px;
+  position: relative;
+}
+.reading-body .list-item:before {
+  content: "·";
+  position: absolute;
+  left: 0;
+}
+.kicker,
+.eyebrow {
+  display: none;
+}
+.iconbox {
+  width: 42px;
+  height: 42px;
+  background: #eef4ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #327bff;
+}
+.bottom-space {
+  height: 30px;
+}

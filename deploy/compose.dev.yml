@@ -1,0 +1,20 @@
+name: unemployment-hub-local
+services:
+  db:
+    image: postgres:17.9-alpine@sha256:c7526c0f6c3f30260a563d7bcf8ad778effac59a44f8ffa86678c35418338609
+    environment:
+      POSTGRES_USER: uh
+      POSTGRES_PASSWORD: uh_local_only
+      POSTGRES_DB: unemployment_hub
+    ports:
+      - '127.0.0.1:5438:5432'
+    volumes:
+      - uh_dev_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U uh -d unemployment_hub']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  uh_dev_data:
+    name: unemployment-hub-local-data

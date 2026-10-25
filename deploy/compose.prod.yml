@@ -1,0 +1,54 @@
+name: unemployment-hub
+services:
+  db:
+    image: postgres:17.9-alpine@sha256:c7526c0f6c3f30260a563d7bcf8ad778effac59a44f8ffa86678c35418338609
+    environment:
+      POSTGRES_USER: uh
+      POSTGRES_DB: unemployment_hub
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes:
+      - uh_prod_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U uh -d unemployment_hub']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: api
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL}
+      PORT: 4000
+      HOST: 0.0.0.0
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?set ADMIN_PASSWORD}
+      ADMIN_ORIGINS: ${ADMIN_ORIGINS:?set ADMIN_ORIGINS}
+      WECHAT_MINI_APPID: ${WECHAT_MINI_APPID:-wx4705822b30adb794}
+      WECHAT_MINI_SECRET: ${WECHAT_MINI_SECRET:-}
+      PADMIN_GATEWAY_SECRET: ${PADMIN_GATEWAY_SECRET:-}
+    networks:
+      default:
+        aliases:
+          - unemployment-api
+    ports:
+      - '127.0.0.1:3070:4000'
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  web:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: web
+    ports:
+      - '127.0.0.1:3071:80'
+    depends_on:
+      - api
+    restart: unless-stopped
+volumes:
+  uh_prod_data:

@@ -1,0 +1,29 @@
+{
+  "name": "unemployment-hub",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run",
+    "build": "pnpm --filter @uh/api build && pnpm --filter @uh/admin build && pnpm --filter @uh/miniapp build:weapp && node scripts/check-weapp-budget.mjs",
+    "build:h5": "pnpm --filter @uh/miniapp build:h5",
+    "db:migrate": "pnpm --filter @uh/api db:migrate",
+    "db:seed": "pnpm --filter @uh/api db:seed",
+    "dev:weapp": "pnpm --filter @uh/miniapp dev:weapp",
+    "setup:local": "node scripts/setup-local.mjs",
+    "release:weapp": "node scripts/release-weapp.mjs",
+    "build:weapp:local": "pnpm --filter @uh/miniapp build:weapp && node scripts/prepare-weapp-local.mjs",
+    "export:padmin": "pnpm --filter @uh/admin build && node scripts/export-padmin-workbench.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vitest": "3.2.4",
+    "@types/node": "24.10.1",
+    "tsx": "4.20.6"
+  }
+}

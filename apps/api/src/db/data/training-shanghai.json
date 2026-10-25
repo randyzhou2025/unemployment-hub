@@ -1,0 +1,568 @@
+{
+  "cityId": "310000",
+  "cityName": "上海",
+  "enabled": true,
+  "year": 2026,
+  "effectiveFrom": "2026-03-01",
+  "effectiveTo": "2026-12-31",
+  "verifiedOn": "2026-10-23",
+  "reviewDueAt": "2026-11-23",
+  "rates": {
+    "A": {
+      "l5": 195000,
+      "l4": 260000,
+      "l3": 325000,
+      "l2": 390000,
+      "l1": 455000,
+      "noLevel": 100000
+    },
+    "B": {
+      "l5": 150000,
+      "l4": 200000,
+      "l3": 270000,
+      "l2": 320000,
+      "l1": 370000,
+      "noLevel": 80000
+    },
+    "C": {
+      "l5": 80000,
+      "l4": 80000,
+      "l3": 150000,
+      "l2": 150000,
+      "l1": 150000,
+      "noLevel": 50000
+    }
+  },
+  "contexts": [
+    {
+      "id": "standard",
+      "label": "目录标准",
+      "ratioBps": 10000,
+      "note": "展示所选等级的市级目录基准，不代表你已符合个人申领条件。先看标准，再对照身份和证书条件。"
+    },
+    {
+      "id": "employed",
+      "label": "在职条件 · 80%",
+      "ratioBps": 8000,
+      "note": "获证时为符合政策范围的在职从业人员，且自证书核发起在本市持续就业满6个月等条件成立时参考。"
+    },
+    {
+      "id": "eligible-full",
+      "label": "符合100%条件",
+      "ratioBps": 10000,
+      "note": "适用于符合政策范围的灵活就业人员、本市户籍失业等人员及相关特定群体。非沪籍灵活就业须核实在沪以灵活就业身份参加职工养老、医疗保险等条件。"
+    },
+    {
+      "id": "reemployed",
+      "label": "重新就业条件 · 120%",
+      "ratioBps": 12000,
+      "note": "针对获证时属于本市户籍失业、协保、农村富余及其他未就业人员等政策适用对象，申请时满足重新就业等规定条件的情形；并非所有再就业人员均可按120%。"
+    },
+    {
+      "id": "unknown",
+      "label": "不确定 / 学生等",
+      "ratioBps": null,
+      "note": "暂不换算个人参考金额。毕业学年学生等适用专门条件，需由经办机构核实学校、证书等级、就业与申请时间。"
+    }
+  ],
+  "policyItems": [
+    {
+      "title": "先看获证时的身份",
+      "text": "身份认定以证书核发日为基准，并结合申领时就业等条件核查。当前失业不代表自动按100%申领，非沪籍人员还须核实适用身份和参保要求。",
+      "sourceIds": ["s2"]
+    },
+    {
+      "title": "在职、灵活就业与失业，条件不同",
+      "text": "在职路径通常需获证后在沪持续就业满6个月，按80%参考；灵活就业等符合政策条件者按100%。本市户籍失业等人员符合重新就业及申领条件时，可按120%参考。",
+      "sourceIds": ["s2"]
+    },
+    {
+      "title": "一般12个月，部分群体24个月",
+      "text": "一般应在证书核发之日起12个月内申请。毕业学年学生及养老、家政行业从业人员按政策适用24个月时限，并须满足各自的专项条件。",
+      "sourceIds": ["s2"]
+    },
+    {
+      "title": "同证不能反复领，年度次数也有限制",
+      "text": "同一职业同一等级限享受一次，已享受后再取得同等级或低等级不重复享受。每年各类培训补贴合计一般不超过3次，其中在职身份不超过1次；按政策适用范围核查。",
+      "sourceIds": ["s2"]
+    },
+    {
+      "title": "养老家政、技岗匹配另有要求",
+      "text": "养老家政行业有在规定时间内从业并持续就业等要求。目录标注技岗匹配的职业，须另满足对应岗位就业条件，不能只看是否拿到证书。",
+      "sourceIds": ["s2"]
+    },
+    {
+      "title": "市级补贴与其他资助分开核实",
+      "text": "本模块只对照上海市级目录标准。工会或区级资助须分别核实身份、证书和申领规则，不自动叠加为个人可领金额。",
+      "sourceIds": ["s2"]
+    }
+  ],
+  "applicationSteps": [
+    "查询证书：确认由上海备案机构按规定评价，且证书信息已可在随申办查询。",
+    "核对条件：按获证时身份、申请时就业情况、补贴目录与历史申领记录逐项确认。",
+    "准备申请：随申办搜索“职业技能提升补贴”，进入“职业技能提升补贴申请”；部分群体建议到区就业促进中心线下办理。",
+    "提交后留意办理结果，材料或身份存在疑问时向所在区就业促进中心核实。"
+  ],
+  "policySourceIds": ["s1", "s2", "s3", "s25"],
+  "sources": [
+    {
+      "id": "s1",
+      "title": "上海市职业技能提升补贴目录（2026年）发布通知",
+      "url": "https://rsj.sh.gov.cn/tjypx_17737/20260116/t0035_1438001.html"
+    },
+    {
+      "id": "s2",
+      "title": "上海市人社局/财政局",
+      "url": "https://www.shanghai.gov.cn/202511bmgfxwj/20250611/589f4ed6333c4c0a924f0aae3830f774.html"
+    },
+    {
+      "id": "s3",
+      "title": "上海职业技能提升补贴线上申请说明（随申办）",
+      "url": "https://rsj.sh.gov.cn/trdhy_17355/20260525/bfbb3b8e546244c286de51aa22cacf95.html"
+    },
+    {
+      "id": "s4",
+      "title": "消防职业技能鉴定考试网",
+      "url": "https://xfhyjd.119.gov.cn/"
+    },
+    {
+      "id": "s6",
+      "title": "国家职业标准《消防设施操作员（2026年版）》解读",
+      "url": "https://www.119.gov.cn/zfxxgk/fdzdgknr/zcfg/2026/54307.shtml"
+    },
+    {
+      "id": "s7",
+      "title": "上海一网通办",
+      "url": "https://zwdt.sh.gov.cn/govPortals/bsfw/item/b57623c5-1a41-4501-a9d4-471ded4d622b"
+    },
+    {
+      "id": "s8",
+      "title": "上海市考试考务费目录清单",
+      "url": "https://zwdt.sh.gov.cn/govPortals/column/qdList/table4.html"
+    },
+    {
+      "id": "s9",
+      "title": "上海市应急管理局",
+      "url": "https://yjglj.sh.gov.cn/xxgk/xxgkml/aqsc/20220105/004148220e6541449db94fd63254bd03.html"
+    },
+    {
+      "id": "s10",
+      "title": "上海交通大学",
+      "url": "https://rsj.sh.gov.cn/cmsres/df/df046bdb49744910a462cbec3000ffeb/ebbaa0bcb8f09e4d2d11397545326d41.pdf"
+    },
+    {
+      "id": "s11",
+      "title": "上海市计算技术研究所",
+      "url": "https://rsj.sh.gov.cn/cmsres/18/18fd9000ecf6408fb17be488c7cb7c32/21d6e1d8a586ebafe07b1dd45c6167d7.pdf"
+    },
+    {
+      "id": "s13",
+      "title": "上海市多媒体行业协会",
+      "url": "https://rsj.sh.gov.cn/cmsres/9b/9b9c55a8a590498786ac3e5a8dd64c49/f09ba1e4e88c8fafb838e7e2a8f5985f.pdf"
+    },
+    {
+      "id": "s14",
+      "title": "上海市电子商务行业协会",
+      "url": "https://rsj.sh.gov.cn/cmsres/4e/4e7c5bc66911419ea078dab322497006/ded946d6ddb9b4d76a1d3393b7fab339.pdf"
+    },
+    {
+      "id": "s15",
+      "title": "上海商学院",
+      "url": "https://rsj.sh.gov.cn/tzyjndjpj_17837/20260508/t0035_1440526.html"
+    },
+    {
+      "id": "s17",
+      "title": "上海中福会养老院",
+      "url": "https://rsj.sh.gov.cn/tzyjndjpj_17837/20260508/t0035_1440532.html"
+    },
+    {
+      "id": "s18",
+      "title": "上海中福会养老院2026养老护理员评价通知PDF",
+      "url": "https://rsj.sh.gov.cn/cmsres/52/525ffa7e4c5f48a6bf655eaa19998c07/1d549d37fb632d9821803f0b40576a36.pdf"
+    },
+    {
+      "id": "s19",
+      "title": "上海市家庭服务业行业协会考试公告",
+      "url": "https://www.shhsia.org.cn/index/index/ksggxx.html?id=7"
+    },
+    {
+      "id": "s25",
+      "title": "上海市2026年职业技能提升补贴目录PDF",
+      "url": "https://rsj.sh.gov.cn/cmsres/9b/9ba19f490cd44fb5bfbdd4f6dd028308/0c1f7bca8e3905c87c234f8f6edbecbb.pdf"
+    },
+    {
+      "id": "s27",
+      "title": "上海交通大学终身教育学院",
+      "url": "https://ce.sjtu.edu.cn/Rs/hb"
+    },
+    {
+      "id": "s29",
+      "title": "上海市信息安全行业协会",
+      "url": "https://rsj.sh.gov.cn/cmsres/de/debfe693740b4a37aebd0e8e68d34efc/95d73b60f86acb2c6687b39d0393b8be.pdf"
+    },
+    {
+      "id": "ecommerce-entry",
+      "title": "上海市电子商务行业协会认定公告",
+      "url": "https://www.sh-ec.org.cn/article/13_1302_0_0.html"
+    },
+    {
+      "id": "media-entry",
+      "title": "上海市多媒体行业协会评价计划",
+      "url": "https://edu.mia.org.cn/planlist/mia"
+    }
+  ],
+  "projects": [
+    {
+      "id": "fire-operator",
+      "title": "消防设施操作员",
+      "fullName": "消防设施操作员",
+      "enabled": true,
+      "category": "fire-emergency",
+      "subsidyClass": "C",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "从事消防设施监控、操作与维护。先分清岗位方向，再核验等级条件。",
+      "levels": [
+        {
+          "key": "l5",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": null,
+          "feeNote": "未核实上海站统一评价费；以上海站报名系统当期显示为准，培训费另计。"
+        },
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": null,
+          "feeNote": "未核实上海站统一评价费；以上海站报名系统当期显示为准，培训费另计。"
+        }
+      ],
+      "referenceLevel": "l4",
+      "requirements": "一般需高中或同等学力，另须满足所选等级的经历、证书等条件。2026版职业标准自2026年10月1日起实施，请按新标准和上海站公告审核。",
+      "registrationSourceId": "s4",
+      "sourceIds": ["s4", "s6"],
+      "steps": [
+        "进入消防职业技能鉴定官方平台，选择上海站、岗位方向与等级。",
+        "对照现行职业标准准备学历、经历和证书材料，查看预约批次。",
+        "通过材料审核后，按系统通知缴费并参加鉴定。"
+      ]
+    },
+    {
+      "id": "special-operation",
+      "title": "特种作业人员",
+      "fullName": "特种作业人员（低压/高压电工、焊接与热切割、高处作业等）",
+      "enabled": true,
+      "category": "fire-emergency",
+      "subsidyClass": "C",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "电工、焊接、高处等特种作业操作证。它与职业技能等级证书是两条路径。",
+      "levels": [
+        {
+          "key": "noLevel",
+          "registrationMode": "organization",
+          "registrationNote": "按上海应急管理部门公布的培训机构和对应作业项目办理，不作为自主网上约考项目。",
+          "feeCents": 6000,
+          "feeNote": "初次考核60元/人次、复审50元/人次为原官方收费目录参考；培训等费用另询，当前收费须再核实。"
+        }
+      ],
+      "referenceLevel": "noLevel",
+      "requirements": "通常要求年满18周岁至法定退休年龄、身体条件合格、初中及以上文化程度；特定作业另有要求。操作证与“电工”职业技能等级证不可混用补贴类别和标准。",
+      "registrationSourceId": "s7",
+      "sourceIds": ["s7", "s8", "s9"],
+      "steps": [
+        "在官方办事指南确认自己需要的作业类别与操作项目。",
+        "从应急管理部门公布的机构名单核验承办单位，询问培训与考核安排。",
+        "按机构要求提交材料、完成培训考核；持证后再按补贴规则核查。"
+      ]
+    },
+    {
+      "id": "ai-trainer",
+      "title": "人工智能训练师",
+      "fullName": "人工智能训练师",
+      "enabled": true,
+      "category": "digital-ai",
+      "subsidyClass": "A",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "围绕数据处理、标注与模型应用开展评价，适合有相关专业或实践基础的人。",
+      "levels": [
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 40000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 50000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l2",
+          "registrationMode": "confirm",
+          "registrationNote": "上海交大设个人预约渠道，高等级须另核工作资历、前置证书及综合评审要求；不承诺当期有批次。",
+          "feeCents": null,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l1",
+          "registrationMode": "confirm",
+          "registrationNote": "上海交大设个人预约渠道，高等级须另核工作资历、前置证书及综合评审要求；不承诺当期有批次。",
+          "feeCents": null,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        }
+      ],
+      "referenceLevel": "l4",
+      "requirements": "四级、三级均有不同申报路径，相关学历只是其中一种条件，并非任意专业本科均可报。请对照上海交大等评价机构的现行职业标准与材料要求；二级、一级另有更高资历及综合评审要求。",
+      "registrationSourceId": "s27",
+      "sourceIds": ["s10", "s11", "s27"],
+      "steps": [
+        "在上海交大等备案评价机构官网核对职业、方向、等级和当期计划。",
+        "个人按机构指引邮件或电话预约，提交学历、前置证书与经历材料审核。",
+        "资格通过后再确认评价费、培训是否可选和考试时间，勿把补贴当作报名保证。"
+      ]
+    },
+    {
+      "id": "network-security-admin",
+      "title": "网络与信息安全管理员",
+      "fullName": "网络与信息安全管理员",
+      "enabled": true,
+      "category": "digital-ai",
+      "subsidyClass": "A",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "先区分网络安全与信息安全方向，再按机构可评价的方向和等级报名。",
+      "levels": [
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 50000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 55000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        }
+      ],
+      "referenceLevel": "l4",
+      "requirements": "需按所选方向、等级核验相关专业、工作年限或前置证书。上海交大所列为信息安全管理员方向；不同机构可评价方向并不相同。",
+      "registrationSourceId": "s27",
+      "sourceIds": ["s10", "s11", "s29", "s27"],
+      "steps": [
+        "确认目标是网络安全管理员还是信息安全管理员方向。",
+        "查看备案机构年度公告，个人按预约或申报流程提交材料。",
+        "核实考核内容与费用、通过审核后再缴费；当前批次以机构通知为准。"
+      ]
+    },
+    {
+      "id": "omni-media-operator",
+      "title": "全媒体运营师",
+      "fullName": "全媒体运营师（直播运营/流量运营/视听运营）",
+      "enabled": true,
+      "category": "media-ecommerce",
+      "subsidyClass": "B",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "面向内容策划、传播运营与数据分析，先看考核内容与现有工作经验是否匹配。",
+      "levels": [
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 40000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 50000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        }
+      ],
+      "referenceLevel": "l4",
+      "requirements": "四级与三级的学历、工作经历或前置证书要求不同。以上海市多媒体行业协会当前申报条件为准，不默认零基础均可直接报三级。",
+      "registrationSourceId": "media-entry",
+      "sourceIds": ["s13", "media-entry"],
+      "steps": [
+        "查看上海市多媒体行业协会评价计划与报名指南。",
+        "选择等级，核对资格并按个人申报要求上传材料。",
+        "确认评价费与培训费分别金额，按审核结果及通知参加考试。"
+      ]
+    },
+    {
+      "id": "ecommerce-specialist",
+      "title": "电子商务师",
+      "fullName": "电子商务师（网商）",
+      "enabled": true,
+      "category": "media-ecommerce",
+      "subsidyClass": "B",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "电子商务师的网商方向。所列协会提供个人线下申报，先核资格再到现场。",
+      "levels": [
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列上海市电子商务行业协会接受个人线下申报，请先核实地点、材料和批次。",
+          "feeCents": 40000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "personal",
+          "registrationNote": "所列上海市电子商务行业协会接受个人线下申报，请先核实地点、材料和批次。",
+          "feeCents": 50000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        }
+      ],
+      "referenceLevel": "l4",
+      "requirements": "按四级、三级分别核验学历、从业经历或前置证书。此处为网商方向，不能直接套用到其他方向或机构。",
+      "registrationSourceId": "ecommerce-entry",
+      "sourceIds": ["s14", "ecommerce-entry"],
+      "steps": [
+        "先查看协会官方认定公告，核对网商方向与等级。",
+        "联系官方公告中的申报渠道，确认个人线下申报材料和时间。",
+        "材料审核后按通知缴费并参加评价，培训与评价费用分别核实。"
+      ]
+    },
+    {
+      "id": "internet-marketer",
+      "title": "互联网营销师",
+      "fullName": "互联网营销师（直播销售员）",
+      "enabled": true,
+      "category": "media-ecommerce",
+      "subsidyClass": "C",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "直播销售员方向，关注直播流程、商品讲解和运营实操，线上预申报后仍需完成审核。",
+      "levels": [
+        {
+          "key": "l5",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 35800,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 41800,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": 51800,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        }
+      ],
+      "referenceLevel": "l5",
+      "requirements": "以上海商学院公告所列直播销售员方向和等级为准。需满足相应申报条件，线上预报名不代表审核通过。",
+      "registrationSourceId": "s15",
+      "sourceIds": ["s15"],
+      "steps": [
+        "打开上海人社发布的上海商学院认定公告，确认当期计划。",
+        "按公告指向的申报系统预申请，再完成规定的线下材料审核。",
+        "核对评价费与补考费用后缴费，按通知参加理论与实操考核。"
+      ]
+    },
+    {
+      "id": "elderly-care-worker",
+      "title": "养老护理员",
+      "fullName": "养老护理员",
+      "enabled": true,
+      "category": "care-service",
+      "subsidyClass": "A",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "面向养老照护服务。所列年度公告采用单位团体申报，需先联系合规承办机构。",
+      "levels": [
+        {
+          "key": "l5",
+          "registrationMode": "organization",
+          "registrationNote": "所列中福会养老院年度公告按机构或单位组织，不接受个人申报；其他评价机构请单独核验。",
+          "feeCents": 38000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l4",
+          "registrationMode": "organization",
+          "registrationNote": "所列中福会养老院年度公告按机构或单位组织，不接受个人申报；其他评价机构请单独核验。",
+          "feeCents": 47000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "organization",
+          "registrationNote": "所列中福会养老院年度公告按机构或单位组织，不接受个人申报；其他评价机构请单独核验。",
+          "feeCents": 66000,
+          "feeNote": "2026年所列机构公告参考，非全市统一价；培训费另计，当前批次请向评价机构确认。"
+        }
+      ],
+      "referenceLevel": "l5",
+      "requirements": "按等级核验学历、工作经历和前置证书。养老服务从业人员补贴另有行业就业与持续就业条件，不能只凭失业身份推断可申领。",
+      "registrationSourceId": "s17",
+      "sourceIds": ["s17", "s18"],
+      "steps": [
+        "查看中福会养老院等备案机构的认定公告与申报范围。",
+        "由符合要求的单位或机构组织材料申报，个人先确认可参加的合规渠道。",
+        "明确评价与培训费用，并核对获证后的行业就业、补贴申领时限。"
+      ]
+    },
+    {
+      "id": "domestic-worker",
+      "title": "家政服务员",
+      "fullName": "家政服务员（家务服务员/家庭照护员等方向）",
+      "enabled": true,
+      "category": "care-service",
+      "subsidyClass": "A",
+      "noticeDate": "2026-06-10",
+      "noticeNote": "依据2026年度评价公告及原站2026年6月整理信息；不是当前招生或考试日程，报名、费用须查当期公告。",
+      "summary": "分家务服务、母婴护理、家庭照护等方向。先定方向，再选等级和核对费用。",
+      "levels": [
+        {
+          "key": "l5",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": null,
+          "feeNote": "所列2026年公告五级参考：家务350元、母婴400元、家庭照护420元；分方向收费，当前批次另核，培训费另计。"
+        },
+        {
+          "key": "l4",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": null,
+          "feeNote": "所列2026年公告四级参考：家务400元、母婴450元、家庭照护460元；分方向收费，当前批次另核，培训费另计。"
+        },
+        {
+          "key": "l3",
+          "registrationMode": "personal",
+          "registrationNote": "所列机构接受个人申报，仍须审核等级、专业或工作年限；以当期批次公告为准。",
+          "feeCents": null,
+          "feeNote": "所列2026年公告三级参考：家务450元、母婴530元、家庭照护550元；分方向收费，当前批次另核，培训费另计。"
+        }
+      ],
+      "referenceLevel": "l5",
+      "requirements": "按服务方向与等级核验申报条件。家政行业补贴有专门就业条件，须核验所在机构行业信息、就业关系和持续就业时间。",
+      "registrationSourceId": "s19",
+      "sourceIds": ["s19"],
+      "steps": [
+        "在上海市家政服务行业协会官方公告中选择服务方向和等级。",
+        "按个人线下申报要求提交材料，核实当期地址和时间。",
+        "分别确认评价费、培训费及后续就业要求，再决定是否参加。"
+      ]
+    }
+  ]
+}

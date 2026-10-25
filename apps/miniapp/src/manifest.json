@@ -1,0 +1,25 @@
+{
+  "name": "失业有数",
+  "appid": "",
+  "description": "覆盖离职到重新就业各阶段的资讯、资源与工具",
+  "versionName": "0.1.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "wx4705822b30adb794",
+    "setting": {
+      "urlCheck": true,
+      "es6": true,
+      "minified": true
+    },
+    "usingComponents": true
+  },
+  "h5": {
+    "router": {
+      "mode": "hash"
+    }
+  },
+  "uniStatistics": {
+    "enable": false
+  }
+}

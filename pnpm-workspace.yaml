@@ -1,0 +1,6 @@
+packages:
+  - apps/*
+  - packages/*
+useNodeVersion: 24.22.0
+onlyBuiltDependencies:
+  - esbuild

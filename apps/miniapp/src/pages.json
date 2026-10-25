@@ -1,0 +1,236 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "失业有数",
+        "enablePullDownRefresh": true,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/information/index",
+      "style": {
+        "navigationBarTitleText": "资讯",
+        "enablePullDownRefresh": true,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/tools/index",
+      "style": {
+        "navigationBarTitleText": "实用工具",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/me/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/search/index",
+      "style": {
+        "navigationBarTitleText": "搜索",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/article/detail",
+      "style": {
+        "navigationBarTitleText": "阅读",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/guide/detail",
+      "style": {
+        "navigationBarTitleText": "阶段指南",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/resource/detail",
+      "style": {
+        "navigationBarTitleText": "官方渠道",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/resources/index",
+      "style": {
+        "navigationBarTitleText": "官方渠道",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/feedback/index",
+      "style": {
+        "navigationBarTitleText": "反馈与纠错",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/personalize/index",
+      "style": {
+        "navigationBarTitleText": "行动清单"
+      }
+    },
+    {
+      "path": "pages/topic/index",
+      "style": {
+        "navigationBarTitleText": "专题指南"
+      }
+    },
+    {
+      "path": "pages/benefits/index",
+      "style": {
+        "navigationBarTitleText": "失业金",
+        "enablePullDownRefresh": true
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "package-tools",
+      "pages": [
+        {
+          "path": "benefit/index",
+          "style": {
+            "navigationBarTitleText": "失业金金额试算"
+          }
+        },
+        {
+          "path": "budget/index",
+          "style": {
+            "navigationBarTitleText": "生活预算"
+          }
+        }
+      ]
+    },
+    {
+      "root": "package-records",
+      "pages": [
+        {
+          "path": "tasks/index",
+          "style": {
+            "navigationBarTitleText": "行动清单"
+          }
+        },
+        {
+          "path": "bookmarks/index",
+          "style": {
+            "navigationBarTitleText": "我的收藏"
+          }
+        },
+        {
+          "path": "applications/index",
+          "style": {
+            "navigationBarTitleText": "求职记录"
+          }
+        },
+        {
+          "path": "applications/edit",
+          "style": {
+            "navigationBarTitleText": "编辑求职记录"
+          }
+        }
+      ]
+    },
+    {
+      "root": "package-insurance",
+      "pages": [
+        {
+          "path": "home/index",
+          "style": {
+            "navigationBarTitleText": "社保医保",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "planner/index",
+          "style": {
+            "navigationBarTitleText": "我的参保方案"
+          }
+        },
+        {
+          "path": "detail/index",
+          "style": {
+            "navigationBarTitleText": "方案详情"
+          }
+        },
+        {
+          "path": "fees/index",
+          "style": {
+            "navigationBarTitleText": "费用与差异"
+          }
+        }
+      ]
+    },
+    {
+      "root": "package-training",
+      "pages": [
+        {
+          "path": "home/index",
+          "style": {
+            "navigationBarTitleText": "培训补贴",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "detail/index",
+          "style": {
+            "navigationBarTitleText": "项目详情"
+          }
+        },
+        {
+          "path": "policy/index",
+          "style": {
+            "navigationBarTitleText": "补贴申领指南"
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f4f8ff",
+    "backgroundColor": "#f5f7fb"
+  },
+  "tabBar": {
+    "color": "#8790a6",
+    "selectedColor": "#2874ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/0.png",
+        "selectedIconPath": "static/tabbar/0-active.png"
+      },
+      {
+        "pagePath": "pages/information/index",
+        "text": "资讯",
+        "iconPath": "static/tabbar/1.png",
+        "selectedIconPath": "static/tabbar/1-active.png"
+      },
+      {
+        "pagePath": "pages/tools/index",
+        "text": "工具",
+        "iconPath": "static/tabbar/2.png",
+        "selectedIconPath": "static/tabbar/2-active.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/3.png",
+        "selectedIconPath": "static/tabbar/3-active.png"
+      }
+    ]
+  }
+}
