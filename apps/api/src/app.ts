@@ -36,6 +36,7 @@ import { hashPassword, verifyPassword, tokenHash } from "./auth.js";
 import { registerAccountRoutes, registerAccountAdmin, type AccountDependencies } from "./accounts.js";
 import { createGatewayVerifier } from "./padmin-gateway.js";
 import { parseMarkdown } from "./markdown.js";
+import { registerWorkbench } from "./workbench.js";
 
 function problem(statusCode: number, message: string) {
   return Object.assign(new Error(message), { statusCode });
@@ -101,6 +102,7 @@ export async function createApp(db: Database, config: Config, accountDeps: Accou
     await db.execute(sql`SELECT 1`);
     return { status: "ready" };
   });
+  registerWorkbench(app);
   async function current(id: string) {
     const rows = await db
       .select({ snapshot: t.revisions.snapshot })

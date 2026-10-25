@@ -43,7 +43,7 @@ UNEMPLOYMENT_GATEWAY_SECRET=
 ```bash
 cd /Users/Randy/Cursor/UnemploymentHub
 pnpm db:migrate
-pnpm export:padmin
+pnpm build:admin
 pnpm dev
 ```
 
@@ -64,7 +64,7 @@ npm run dev:server
 
 开发 padmin React 页面可另运行 `npm run dev:padmin`，访问 `http://localhost:5175/padmin/`；该开发服务器已代理管理 API 和嵌入工作台。
 
-每次修改后台后执行 `pnpm export:padmin`，导出的工作台位于 `XueXiDaZi/integrations/unemployment-workbench/`。这是构建产物，不纳入 Git。服务器按部署指南从 API 镜像复制工作台，再构建 padmin。
+本机编辑器源码修改后运行 `pnpm build:admin` 生成预览文件，padmin 会从 API 自动读取构建结果。生产构建已包含这一步；编辑器与 API 一起发布，刷新 padmin 即可加载新版本，不再导出、复制或上传工作台文件。
 
 ## 生产发布
 
@@ -79,7 +79,7 @@ npm run dev:server
 | 资讯正常但用户一直为 0 | 是否填写独立 AppSecret；是否完整重启 API；是否确实从微信小程序进入（H5 不创建微信账号） |
 | 后台显示「管理连接校验失败」 | 两边密钥是否一致；API 是否仍使用旧环境；两台服务器时间是否同步 |
 | 「失业有数后台连接尚未配置」 | XueXiDaZi 环境中是否提供 API origin 和管理密钥 |
-| 工作台 404 | 是否执行导出并随 XueXiDaZi 上传资源、重新构建容器 |
+| 工作台 404 / 502 | 确认 API 已更新并健康，padmin 的 API origin 和内网连接正常 |
 | 工作台重复要求登录 | 是否从 padmin 内打开，padmin 令牌是否有效；不要手工改为跨域 iframe |
 | padmin 502 | 健康检查、Docker 网络和 `unemployment-api:4000` 是否可达 |
 

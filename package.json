@@ -18,7 +18,7 @@
     "setup:local": "node scripts/setup-local.mjs",
     "release:weapp": "node scripts/release-weapp.mjs",
     "build:weapp:local": "pnpm --filter @uh/miniapp build:weapp && node scripts/prepare-weapp-local.mjs",
-    "export:padmin": "pnpm --filter @uh/admin build && node scripts/export-padmin-workbench.mjs"
+    "build:admin": "pnpm --filter @uh/admin build"
   },
   "devDependencies": {
     "typescript": "5.9.3",

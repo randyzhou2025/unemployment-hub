@@ -77,4 +77,4 @@ pnpm build:h5
 - [社保医保模块运营指南](docs/社保医保模块运营指南.md)
 - [培训补贴模块运营指南](docs/培训补贴模块运营指南.md)
 
-`pnpm export:padmin` 用于本机联调时导出工作台到相邻的 XueXiDaZi 项目。生产环境从失业有数 API 镜像复制构建好的工作台，再构建 padmin，详见部署指南。
+管理编辑器随 API 镜像自动构建，由 padmin 同源代理读取。更新编辑器只需部署失业有数 API 并刷新 padmin，无需复制文件或重建 padmin。本机开发预览运行 `pnpm build:admin`。
