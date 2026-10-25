@@ -1,4 +1,4 @@
-import { readdir, stat, readFile, writeFile } from "node:fs/promises";
+import { readdir, stat, readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 const root = path.resolve("apps/miniapp/dist/build/mp-weixin");
 async function files(dir) {
@@ -32,6 +32,7 @@ const output = {
   bytes: totals,
   mediaBytes: media,
 };
+await mkdir("docs/acceptance", { recursive: true });
 await writeFile(
   "docs/acceptance/weapp-budget.json",
   JSON.stringify(output, null, 2) + "\n",
