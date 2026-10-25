@@ -18,11 +18,11 @@ pnpm dev
 | 服务 | 本机 | 当前局域网 |
 | --- | --- | --- |
 | 小程序 H5 辅助预览 | http://localhost:3072/ | http://192.168.1.108:3072/ |
-| 独立运营工作台 | http://localhost:3071/ | http://192.168.1.108:3071/ |
+| 编辑器开发预览（仅开发） | http://localhost:3071/ | http://192.168.1.108:3071/ |
 | API 就绪检查 | http://localhost:3070/api/health/ready | http://192.168.1.108:3070/api/health/ready |
 | padmin 用户管理（另启 XueXiDaZi） | http://localhost:8090/padmin/unemployment/users | http://192.168.1.108:8090/padmin/unemployment/users |
 
-后台初始用户名 `admin`，本机密码保存在 `apps/api/.env`。环境文件不纳入 Git。换网络后，按实际地址更新 `apps/miniapp/.env.local` 的 `VITE_API_BASE`。
+日常后台操作统一使用 padmin；生产不启用独立后台账号。本机编辑器调试账号可单独配置在 `apps/api/.env`，环境文件不纳入 Git。换网络后，按实际地址更新 `apps/miniapp/.env.local` 的 `VITE_API_BASE`。
 
 ## 微信端运行
 

@@ -2,10 +2,13 @@ import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import postgres from "postgres";
 import { readFile } from "node:fs/promises";
 import { createHash, createHmac, randomBytes } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { createApp } from "../src/app";
 import { connect } from "../src/db/client";
 import { shanghaiDay } from "../src/accounts";
 import { hashPassword } from "../src/auth";
+import { readConfig } from "../src/config";
 import * as t from "../src/db/schema";
 
 const base =
@@ -17,6 +20,7 @@ const secret = randomBytes(32).toString("hex"),
   origin = "http://localhost:3071";
 let connection: ReturnType<typeof connect>,
   app: Awaited<ReturnType<typeof createApp>>;
+let databaseUrl = "";
 const data = (r: { json: () => any }) => r.json().data;
 const sign = (
   url: string,
@@ -43,6 +47,7 @@ beforeAll(async () => {
   await root.unsafe(`CREATE DATABASE ${database}`);
   const url = new URL(base);
   url.pathname = "/" + database;
+  databaseUrl = url.toString();
   connection = connect(url.toString());
   for (const file of ["0001_initial.sql", "0002_mini_accounts.sql"])
     await connection.client.unsafe(
@@ -264,5 +269,39 @@ describe("padmin 签名接入", () => {
         (r: any) => r.actor === "padmin@example.test",
       ),
     ).toBe(true);
+  });
+});
+
+describe("生产只使用 padmin", () => {
+  it("不配置独立后台账号也能启动，签名读写正常，直接登录被关闭", async () => {
+    const production = await createApp(connection.db, readConfig({
+      DATABASE_URL: databaseUrl, NODE_ENV: "production", PADMIN_GATEWAY_SECRET: secret,
+    }));
+    try {
+      expect((await production.inject("/api/health/ready")).statusCode).toBe(200);
+      expect((await production.inject({ method: "POST", url: "/api/v1/admin/login", payload: { username: "editor", password: "test-password" } })).statusCode).toBe(404);
+      expect((await production.inject("/api/v1/admin/me")).statusCode).toBe(401);
+      const url="/api/v1/admin/settings", payload={disabledTools:[]};
+      expect((await production.inject({ method:"PUT", url, payload, headers:sign(url,"PUT",payload) })).statusCode).toBe(200);
+      expect(data(await production.inject({url:"/api/v1/admin/me",headers:sign("/api/v1/admin/me")})).username).toBe("padmin@example.test");
+    } finally { await production.close(); }
+  });
+  it("即使遗留账号与 Cookie 仍存在，生产也不能通过它们登录", async () => {
+    const login=await app.inject({method:"POST",url:"/api/v1/admin/login",headers:{origin},payload:{username:"editor",password:"test-password"}});
+    const production=await createApp(connection.db,readConfig({DATABASE_URL:databaseUrl,NODE_ENV:"production",PADMIN_GATEWAY_SECRET:secret,ADMIN_PASSWORD:"old-config-password"}));
+    try {
+      expect((await production.inject({url:"/api/v1/admin/me",headers:{cookie:String(login.headers["set-cookie"]).split(";")[0]}})).statusCode).toBe(401);
+    } finally {await production.close();}
+  });
+  it("不配置管理员密码也能初始化政策内容，且不创建独立管理员", async () => {
+    const before=await connection.db.select().from(t.admins);
+    const seed=()=>execFileSync(process.execPath,["--import","tsx",fileURLToPath(new URL("../src/db/seed.ts",import.meta.url))],{env:{...process.env,DATABASE_URL:databaseUrl,ADMIN_PASSWORD:""},stdio:"pipe"});
+    seed();
+    expect(await connection.db.select().from(t.admins)).toEqual(before);
+    expect((await connection.db.select().from(t.contents)).length).toBeGreaterThan(0);
+    const first=await connection.db.select().from(t.audit);
+    expect(first.some(a=>a.action==="seed_verified_content" && a.actor==="system")).toBe(true);
+    seed();
+    expect(await connection.db.select().from(t.audit)).toHaveLength(first.length);
   });
 });

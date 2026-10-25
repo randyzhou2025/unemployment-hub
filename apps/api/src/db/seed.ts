@@ -10,8 +10,9 @@ import { defaultInsuranceRecords } from "./insurance-policy.js";
 import { defaultTrainingRecord } from "./training-catalog.js";
 import { defaultBenefitPolicy } from "./benefit-policy.js";
 const { DATABASE_URL, ADMIN_USERNAME = "admin", ADMIN_PASSWORD } = process.env;
-if (!DATABASE_URL || !ADMIN_PASSWORD || ADMIN_PASSWORD.length < 16)
-  throw new Error("Database and admin password (16+ chars) required");
+if (!DATABASE_URL) throw new Error("DATABASE_URL is required");
+if (ADMIN_PASSWORD && ADMIN_PASSWORD.length < 16)
+  throw new Error("Admin password must contain at least 16 characters when configured");
 const { db, client } = connect(DATABASE_URL);
 try {
   await db.transaction(async (tx) => {
@@ -24,7 +25,7 @@ try {
         { key: "benefitPolicy:310000", value: defaultBenefitPolicy },
       ])
       .onConflictDoNothing();
-    await tx
+    if (ADMIN_PASSWORD) await tx
       .insert(t.admins)
       .values({
         username: ADMIN_USERNAME,
@@ -67,7 +68,7 @@ try {
         .values({ contentId: item.id, revision: 1, snapshot });
       await tx.insert(t.audit).values({
         id: crypto.randomUUID(),
-        actor: ADMIN_USERNAME,
+        actor: ADMIN_PASSWORD ? ADMIN_USERNAME : "system",
         action: "seed_verified_content",
         entityId: item.id,
       });

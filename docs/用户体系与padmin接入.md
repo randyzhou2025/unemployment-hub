@@ -60,13 +60,15 @@ npm run dev:server
 - padmin 用户：<http://localhost:8090/padmin/unemployment/users>
 - padmin 资讯：<http://localhost:8090/padmin/unemployment/contents>
 - LAN 用户：<http://192.168.1.108:8090/padmin/unemployment/users>（本机当前局域网地址）
-- 独立后台继续可用：<http://localhost:3071/>
+- 编辑器开发预览（仅开发）：<http://localhost:3071/>
 
 开发 padmin React 页面可另运行 `npm run dev:padmin`，访问 `http://localhost:5175/padmin/`；该开发服务器已代理管理 API 和嵌入工作台。
 
 每次修改后台后执行 `pnpm export:padmin`，导出的工作台位于 `XueXiDaZi/integrations/unemployment-workbench/`。这是构建产物，不纳入 Git。服务器按部署指南从 API 镜像复制工作台，再构建 padmin。
 
 ## 生产发布
+
+生产只通过 padmin 登录，不需要配置独立后台用户名、密码或管理域名。数据库连接由 Compose 自动生成，最少只需数据库密码、AppID、微信 AppSecret 和 padmin 连接密钥。生产 API 拒绝独立登录和历史独立后台 Cookie。
 
 统一按 [部署上线指南：上线三步](部署上线指南.md) 执行。新项目目录为 `/opt/unemployment-hub`，padmin 沿用服务器已有的 `/opt/xuexidazi`。该指南已包含本机内容迁移、服务端密钥、Docker 网络和微信发布步骤。
 

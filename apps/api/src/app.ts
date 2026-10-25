@@ -272,15 +272,20 @@ export async function createApp(db: Database, config: Config, accountDeps: Accou
 
   registerAccountRoutes(app, db, config, accountDeps);
   const verifyGateway = createGatewayVerifier(config.PADMIN_GATEWAY_SECRET);
+  const standaloneLogin = config.NODE_ENV !== "production" && !!config.ADMIN_PASSWORD;
   app.register(
     async (scope) => {
       scope.addHook("preHandler", async (req) => {
+        if (req.url.split("?")[0] === "/api/v1/admin/login") {
+          if (!standaloneLogin) throw problem(404, "请从 padmin 管理后台登录");
+          return;
+        }
         const gateway = verifyGateway(req);
         if (gateway) {
           (req as typeof req & {actor:typeof gateway}).actor = gateway;
           return;
         }
-        if (req.url.split("?")[0] === "/api/v1/admin/login") return;
+        if (!standaloneLogin) throw problem(401, "请从 padmin 管理后台登录");
         const token = req.cookies.uhb_admin;
         if (!token) throw problem(401, "请先登录后台");
         const [session] = await db
