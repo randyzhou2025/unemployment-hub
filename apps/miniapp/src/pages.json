@@ -9,10 +9,9 @@
       }
     },
     {
-      "path": "pages/information/index",
+      "path": "pages/tasks/index",
       "style": {
-        "navigationBarTitleText": "资讯",
-        "enablePullDownRefresh": true,
+        "navigationBarTitleText": "我的待办",
         "navigationStyle": "custom"
       }
     },
@@ -33,23 +32,9 @@
       }
     },
     {
-      "path": "pages/search/index",
-      "style": {
-        "navigationBarTitleText": "搜索",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/article/detail",
-      "style": {
-        "navigationBarTitleText": "阅读",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
       "path": "pages/guide/detail",
       "style": {
-        "navigationBarTitleText": "阶段指南",
+        "navigationBarTitleText": "事项清单",
         "enablePullDownRefresh": false
       }
     },
@@ -78,12 +63,6 @@
       "path": "pages/personalize/index",
       "style": {
         "navigationBarTitleText": "行动清单"
-      }
-    },
-    {
-      "path": "pages/topic/index",
-      "style": {
-        "navigationBarTitleText": "专题指南"
       }
     },
     {
@@ -214,8 +193,8 @@
         "selectedIconPath": "static/tabbar/0-active.png"
       },
       {
-        "pagePath": "pages/information/index",
-        "text": "资讯",
+        "pagePath": "pages/tasks/index",
+        "text": "待办",
         "iconPath": "static/tabbar/1.png",
         "selectedIconPath": "static/tabbar/1-active.png"
       },

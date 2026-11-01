@@ -25,7 +25,9 @@ const password = "integration-test-password";
 const headers = () => ({ cookie, origin, "x-uh-admin": "1" });
 const draft = () => ({
   ...structuredClone(seedContents[5].draft),
-  title: "用于验证发布隔离的失业保险金文章",
+  kind: "guide" as const,
+  title: "用于验证发布隔离的失业保险金清单",
+  tasks: [{ key: "prepare", title: "整理个人材料", note: "记录需要准备的事项" }],
   reviewDueAt: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10),
 });
 const body = (res: { json: () => unknown }) =>
@@ -263,6 +265,19 @@ describe("公开内容与后台安全（真实 PostgreSQL）", () => {
     expect(
       body(await app.inject("/api/v1/contents?region=310000")).items,
     ).toHaveLength(0);
+  });
+  it("文章在后台可维护，发布后仍不进入公共列表、搜索或详情", async () => {
+    const created = await app.inject({ method: "POST", url: "/api/v1/admin/contents", headers: headers(), payload: { ...draft(), kind: "article", tasks: [] } });
+    expect(created.statusCode).toBe(200);
+    const id = body(created).id;
+    for (const action of ["submit", "publish"]) {
+      expect((await app.inject({ method: "POST", url: `/api/v1/admin/contents/${id}/${action}`, headers: headers(), payload: { baseVersion: 1 } })).statusCode).toBe(200);
+    }
+    expect(body(await app.inject({ url: "/api/v1/admin/contents", headers: headers() })).some((item: { id: string }) => item.id === id)).toBe(true);
+    for (const path of [`/api/v1/contents/${id}`, `/api/v1/contents/${id}/status`, `/api/v1/guides/${id}`, `/api/v1/resources/${id}`])
+      expect((await app.inject(path)).statusCode).toBe(404);
+    for (const path of ["/api/v1/contents?region=310000", "/api/v1/contents?region=310000&kind=article", "/api/v1/search?region=310000&q=" + encodeURIComponent("失业金")])
+      expect(body(await app.inject(path)).items).toHaveLength(0);
   });
   it("反馈写入后可以处理并留下审计", async () => {
     expect(

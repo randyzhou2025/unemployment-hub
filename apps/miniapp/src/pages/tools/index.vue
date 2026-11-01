@@ -24,22 +24,22 @@ const cards = [
     id: "budget",
   },
   {
-    name: "社保医保指南",
-    description: "断缴、衔接与官方渠道",
+    name: "社保医保",
+    description: "参保安排与费用对照",
     icon: "insurance",
     tone: "green",
     path: "/package-insurance/home/index",
   },
   {
-    name: "离职权益清单",
-    description: "材料准备与权益问题核对",
+    name: "离职准备清单",
+    description: "整理交接与个人材料",
     icon: "rights",
     tone: "violet",
     path: "/pages/guide/detail?id=guide-preparing",
   },
   {
-    name: "培训补贴信息",
-    description: "考证、培训与费用核对",
+    name: "培训补贴",
+    description: "项目、等级与费用对照",
     icon: "training",
     tone: "violet",
     path: "/package-training/home/index",
@@ -72,7 +72,7 @@ const cards = [
 </script>
 <template>
   <view class="tools-view"
-    ><TopBar title="实用工具" subtitle="让复杂的政策变简单" /><view
+    ><TopBar title="实用工具" subtitle="算清收支，把每一步安排好" /><view
       class="tools-grid"
       ><button
         v-for="card in cards.filter(

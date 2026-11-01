@@ -9,7 +9,7 @@ const props = defineProps<{ name: string; tone?: string; size?: number }>();
       width: (props.size || 40) + 'px',
       height: (props.size || 40) + 'px',
     }"
-    ><image :src="'/static/blue/' + props.name + '.png'" mode="aspectFit"
+    ><image class="blue-icon-image" :src="'/static/blue/' + props.name + '.png'" mode="aspectFit"
   /></view>
 </template>
 <style scoped>
@@ -23,7 +23,7 @@ const props = defineProps<{ name: string; tone?: string; size?: number }>();
     0 5px 12px #3273dc15;
   flex-shrink: 0;
 }
-.blue-icon image {
+.blue-icon-image {
   width: 65%;
   height: 65%;
 }

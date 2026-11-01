@@ -116,7 +116,8 @@ export async function createApp(db: Database, config: Config, accountDeps: Accou
       )
       .where(and(eq(t.contents.id, id), eq(t.contents.withdrawn, 0)))
       .limit(1);
-    if (!rows.length) throw problem(404, "内容暂未发布或已撤回");
+    if (!rows.length || rows[0].snapshot.kind === "article")
+      throw problem(404, "内容暂未发布或已撤回");
     return visible(rows[0].snapshot);
   }
   app.get("/api/v1/bootstrap", async (req) => {
@@ -186,6 +187,7 @@ export async function createApp(db: Database, config: Config, accountDeps: Accou
     ];
     const snap = t.revisions.snapshot;
     parts.push(
+      sql`${snap}->>'kind' <> 'article'`,
       sql`(${snap}->>'scope'='national' OR ${snap}->'regionIds' ? ${q.region})`,
     );
     if (q.stage) parts.push(sql`${snap}->'stageKeys' ? ${q.stage}`);

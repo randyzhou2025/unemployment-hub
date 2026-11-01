@@ -22,7 +22,8 @@ export function useContentList(getParams: () => Record<string, unknown>) {
         "/api/v1/contents?" + queryString(params),
       );
       if (mine !== version) return;
-      items.value = more ? [...items.value, ...result.items] : result.items;
+      const available = result.items.filter((item) => item.kind !== "article");
+      items.value = more ? [...items.value, ...available] : available;
       nextCursor.value = result.nextCursor;
     } catch (e) {
       if (mine === version) error.value = (e as Error).message;

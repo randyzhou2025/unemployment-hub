@@ -5,6 +5,9 @@ import { homeSectionsSchema, type HomeSection } from "@uh/contracts";
 import { request } from "../services/http";
 import { storage } from "../services/storage";
 import { readLocal, saveLocal } from "../services/storage-core";
+const retainedDestinations = ["benefit-center", "insurance", "training"];
+export const retainedSections = (sections: readonly HomeSection[]) =>
+  sections.filter((section) => section.enabled && retainedDestinations.includes(section.destination));
 export const useCatalog = defineStore("catalog", () => {
   const available = ref<string[]>(tools.map((t) => t.id));
   const error = ref("");
@@ -13,18 +16,18 @@ export const useCatalog = defineStore("catalog", () => {
     "uhb:v1:home-sections",
     (v): v is HomeSection[] => homeSectionsSchema.safeParse(v).success,
   );
-  const homeSections = ref<HomeSection[]>(cached ?? []);
+  const homeSections = ref<HomeSection[]>(retainedSections(cached ?? defaultHomeSections));
   let hasHomeConfig = cached !== null;
   async function refreshHome() {
     try {
-      homeSections.value = homeSectionsSchema.parse(
+      homeSections.value = retainedSections(homeSectionsSchema.parse(
         await request("/api/v1/home-sections"),
-      );
+      ));
       hasHomeConfig = true;
       saveLocal(storage, "uhb:v1:home-sections", homeSections.value);
     } catch {
       if (!hasHomeConfig)
-        homeSections.value = defaultHomeSections.map((s) => ({ ...s }));
+        homeSections.value = retainedSections(defaultHomeSections).map((s) => ({ ...s }));
     }
   }
   async function refresh() {

@@ -1,29 +1,14 @@
 <script setup lang="ts">
-import { computed, watch, ref } from "vue";
+import { computed, ref } from "vue";
 import { onPullDownRefresh, onShareAppMessage } from "@dcloudio/uni-app";
 import { useInsurance, money } from "../state";
-import { useContentList } from "../../services/content";
 import { go } from "../../services/navigation";
 import BlueIcon from "../../components/BlueIcon.vue";
-import ContentCard from "../../components/ContentCard.vue";
 import ListState from "../../components/ListState.vue";
 const s = useInsurance();
 const { policy, cityName, loading, error, stale } = s;
-const list = useContentList(() => ({
-  region: s.cityId.value,
-  issue: "insurance",
-  kind: "article",
-}));
-watch(
-  s.cityId,
-  () => {
-    list.items.value = [];
-    void list.load();
-  },
-  { immediate: true },
-);
 onPullDownRefresh(async () => {
-  await Promise.all([s.load(), list.load()]);
+  await s.load();
   uni.stopPullDownRefresh();
 });
 onShareAppMessage(() => ({
@@ -148,27 +133,8 @@ const faqs = computed(() =>
           ></view
         >
       </template>
-      <view class="ins-row"
-        ><view class="ins-h2">相关资讯</view
-        ><button
-          class="ins-link"
-          @tap="
-            go('/pages/search/index?issue=insurance&region=' + s.cityId.value)
-          "
-        >
-          搜索更多 ›
-        </button></view
-      ><view class="ins-card feed"
-        ><ContentCard
-          v-for="item in list.items.value.slice(0, 4)"
-          :key="item.id"
-          :item="item" /><ListState
-          :loading="list.loading.value"
-          :error="list.error.value"
-          :empty="!list.items.value.length"
-          @retry="list.load()"
-      /></view> </view
-  ></view>
+    </view>
+  </view>
 </template>
 <style lang="scss">
 @use "../insurance.scss";
@@ -216,7 +182,5 @@ const faqs = computed(() =>
   line-height: 1.9;
   padding: 14px 0 20px;
 }
-.feed {
-  padding: 0 14px;
-}
+
 </style>

@@ -11,14 +11,7 @@ onLoad((q) => {
 });
 function loaded(c: Content) {
   title.value = c.title;
-  uni.setNavigationBarTitle({
-    title:
-      c.kind === "guide"
-        ? "阶段指南"
-        : c.kind === "resource"
-          ? "官方渠道"
-          : "阅读",
-  });
+  uni.setNavigationBarTitle({ title: "官方渠道" });
 }
 onShareAppMessage(() => contentShare(id.value, "resource", title.value));
 onShareTimeline(() => ({
@@ -26,4 +19,4 @@ onShareTimeline(() => ({
   query: "id=" + encodeURIComponent(id.value),
 }));
 </script>
-<template><ContentDetail :id="id" @loaded="loaded" /></template>
+<template><ContentDetail :id="id" kind="resource" @loaded="loaded" /></template>

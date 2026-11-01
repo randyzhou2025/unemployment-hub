@@ -1,12 +1,13 @@
 {
   "name": "失业有数",
   "appid": "",
-  "description": "覆盖离职到重新就业各阶段的资讯、资源与工具",
+  "description": "提供生活预算、待办、求职记录，以及失业金、社保医保、培训补贴查询与工具",
   "versionName": "0.1.0",
   "versionCode": "100",
   "transformPx": false,
   "mp-weixin": {
     "appid": "wx4705822b30adb794",
+    "lazyCodeLoading": "requiredComponents",
     "setting": {
       "urlCheck": true,
       "es6": true,

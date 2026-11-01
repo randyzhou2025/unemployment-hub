@@ -3,14 +3,14 @@ import { computed } from "vue";
 import { usePersonal } from "../../stores/personal";
 import { openContent } from "../../services/navigation";
 const personal = usePersonal();
-const items = computed(() => personal.bookmarks.filter((b) => !b.deleted));
+const items = computed(() => personal.bookmarks.filter((b) => !b.deleted && b.kind !== "article"));
 </script>
 <template>
   <view class="page"
     ><text class="kicker">KEEP WHAT MATTERS</text
     ><view class="page-title">留给之后的自己。</view
     ><view class="subtitle" style="margin: 14px 0 25px"
-      >{{ items.length }} 篇收藏</view
+      >{{ items.length }} 项收藏</view
     ><view v-if="!personal.saved" class="notice warning"
       >保存失败，请检查存储空间后重试。<button
         class="small-button"
@@ -36,7 +36,7 @@ const items = computed(() => personal.bookmarks.filter((b) => !b.deleted));
         取消收藏
       </button></view
     ><view v-if="!items.length" class="empty"
-      >看到有用的文章、指南和渠道时，<br />可以先收藏，之后再慢慢看。</view
+      >收藏需要的事项清单和官方渠道，<br />之后可以直接回来使用。</view
     ></view
   >
 </template>

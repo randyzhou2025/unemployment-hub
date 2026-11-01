@@ -9,9 +9,7 @@ import {
 } from "@uh/contracts";
 import { filterTraining, trainingReference } from "@uh/tool-core";
 import ListState from "../../components/ListState.vue";
-import ContentCard from "../../components/ContentCard.vue";
 import { go } from "../../services/navigation";
-import { useContentList } from "../../services/content";
 import { useTraining, trainingLink, money } from "../state";
 const s = useTraining(),
   { catalog, loading, error, current } = s;
@@ -26,12 +24,6 @@ const filtered = computed(() =>
     personalOnly.value,
   ),
 );
-const list = useContentList(() => ({
-  kind: "article",
-  issue: "training",
-  region: "310000",
-}));
-void list.load();
 function clear() {
   query.value = "";
   category.value = "all";
@@ -44,7 +36,7 @@ const amount = (p: TrainingProject) =>
 const level = (p: TrainingProject) =>
   p.levels.find((l) => l.key === p.referenceLevel)!;
 onPullDownRefresh(async () => {
-  await Promise.allSettled([s.load(), list.load()]);
+  await s.load();
   uni.stopPullDownRefresh();
 });
 onShareAppMessage(() => ({
@@ -188,25 +180,6 @@ onShareAppMessage(() => ({
           ><text class="tr-arrow">→</text>
         </button>
       </template>
-      <view class="tr-row"
-        ><view class="tr-h2">培训补贴资讯</view
-        ><button
-          class="tr-link"
-          @tap="go('/pages/search/index?issue=training&region=310000')"
-        >
-          更多 ›
-        </button></view
-      >
-      <view class="tr-card feed"
-        ><ContentCard
-          v-for="item in list.items.value.slice(0, 3)"
-          :key="item.id"
-          :item="item" /><ListState
-          :loading="list.loading.value"
-          :error="list.error.value"
-          :empty="!list.items.value.length"
-          @retry="list.load()"
-      /></view>
     </view>
   </view>
 </template>
@@ -337,9 +310,7 @@ onShareAppMessage(() => ({
   text-align: center;
   margin-top: 10px;
 }
-.feed {
-  padding: 0 16px;
-}
+
 </style>
 
 <style scoped>

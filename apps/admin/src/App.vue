@@ -337,7 +337,7 @@ async function logout() {
       />
       <div v-if="section === 'contents'" class="paper">
         <p class="muted" style="margin-top: 0">
-          修改先保存草稿，提交审核后再发布。公开内容始终读取最后发布版本。
+          修改先保存草稿，提交审核后再发布。文章资料仅保留在后台，不再向小程序展示；事项清单与官方渠道继续使用发布版本。
         </p>
         <el-table :data="rows" stripe
           ><el-table-column label="内容" min-width="280"

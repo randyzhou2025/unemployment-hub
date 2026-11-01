@@ -9,13 +9,13 @@ const account = useAccount();
 const personal = usePersonal(),
   p = usePreferences();
 const done = computed(
-  () => personal.tasks.filter((t) => t.state === "done").length,
+  () => personal.tasks.filter((t) => !t.deleted && t.state === "done").length,
 );
 function privacy() {
   uni.showModal({
     title: "隐私与本机存储",
     content:
-      "本应用为独立信息与工具服务。微信登录后自动创建账号，保存微信标识、昵称、注册时间和访问时间。任务、收藏、预算、求职记录与内容偏好仅保存在当前设备，不会上传。清理微信存储或卸载可能丢失。反馈仅提交你主动填写的文字。",
+      "本应用提供个人记录与实用工具。微信登录后自动创建账号，保存微信标识、昵称、注册时间和访问时间。任务、收藏、预算、求职记录与使用偏好仅保存在当前设备，不会上传。清理微信存储或卸载可能丢失。反馈仅提交你主动填写的文字。",
     showCancel: false,
   });
 }
@@ -51,7 +51,7 @@ function changeSize(event: unknown) {
 </script>
 <template>
   <view class="me-view"
-    ><TopBar title="我的" subtitle="待办、收藏与求职记录" /><view
+    ><TopBar title="我的" subtitle="个人记录与使用设置" /><view
       class="me-content"
       ><view class="profile-card"
         ><view class="profile-icon"><image src="/static/blue/brand.png" /></view
@@ -65,7 +65,7 @@ function changeSize(event: unknown) {
           ><text class="stat-name">已完成事项</text></button
         ><button @tap="go('/package-records/bookmarks/index')">
           <text class="stat-value">{{
-            personal.bookmarks.filter((b) => !b.deleted).length
+            personal.bookmarks.filter((b) => !b.deleted && b.kind !== "article").length
           }}</text
           ><text class="stat-name">我的收藏</text></button
         ><button @tap="go('/package-records/applications/index')">
@@ -80,7 +80,7 @@ function changeSize(event: unknown) {
           <text>我的行动清单</text
           ><text class="setting-right"
             >{{
-              personal.tasks.filter((t) => t.state === "todo").length
+              personal.tasks.filter((t) => !t.deleted && t.state === "todo").length
             }}
             项待办 ›</text
           ></button
@@ -88,7 +88,7 @@ function changeSize(event: unknown) {
           class="setting-row"
           @tap="go('/package-records/bookmarks/index')"
         >
-          <text>资讯与指南收藏</text
+          <text>清单与渠道收藏</text
           ><text class="setting-right">›</text></button
         ><button
           class="setting-row"
@@ -99,7 +99,7 @@ function changeSize(event: unknown) {
       >
       <view class="settings-group"
         ><view class="setting-row"
-          ><text>大字号阅读</text
+          ><text>使用大字号</text
           ><switch
             :checked="p.value.largeText"
             color="#2874ff"
@@ -114,7 +114,7 @@ function changeSize(event: unknown) {
           <text>隐私与本机存储</text
           ><text class="setting-right">›</text></button
         ><button class="setting-row" @tap="go('/pages/feedback/index')">
-          <text>反馈与内容纠错</text><text class="setting-right">›</text>
+          <text>问题与建议</text><text class="setting-right">›</text>
         </button></view
       ></view
     ></view

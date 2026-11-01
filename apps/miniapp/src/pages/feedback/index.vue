@@ -34,7 +34,7 @@ async function submit() {
 <template>
   <view class="page"
     ><text class="kicker">WE ARE LISTENING</text
-    ><view class="page-title">让信息更准确。</view
+    ><view class="page-title">让工具更好用。</view
     ><view v-if="done" class="card section"
       ><view class="section-title">反馈已收到</view
       ><view class="subtitle">谢谢反馈，我们会尽快处理。</view
@@ -47,7 +47,7 @@ async function submit() {
         class="input section"
         style="height: 190px"
         maxlength="2000"
-        placeholder="哪一处不清楚，或与你查到的官方信息不一致？"
+        placeholder="使用哪个功能时遇到了问题？你希望怎样改进？"
       /><view v-if="error" class="notice warning section">{{ error }}</view
       ><button class="primary section" :disabled="sending" @tap="submit">
         {{ sending ? "正在提交…" : "提交反馈" }}

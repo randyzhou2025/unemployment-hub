@@ -10,10 +10,8 @@ import { formatMoney } from "@uh/tool-core";
 import { request } from "../../services/http";
 import { usePreferences } from "../../stores/preferences";
 import { useCatalog } from "../../stores/catalog";
-import { useContentList } from "../../services/content";
 import { go } from "../../services/navigation";
 import BlueIcon from "../../components/BlueIcon.vue";
-import ContentCard from "../../components/ContentCard.vue";
 import ListState from "../../components/ListState.vue";
 const p = usePreferences(),
   catalog = useCatalog();
@@ -30,11 +28,6 @@ const stateMessage = computed(
       current: "",
     })[data.value?.state || "current"],
 );
-const list = useContentList(() => ({
-  region: p.value.region,
-  issue: "benefits",
-  kind: "article",
-}));
 let generation = 0;
 async function loadPolicy() {
   const mine = ++generation;
@@ -53,14 +46,12 @@ async function loadPolicy() {
   }
 }
 async function refresh() {
-  await Promise.all([loadPolicy(), list.load(), catalog.refresh()]);
+  await Promise.all([loadPolicy(), catalog.refresh()]);
 }
 onShow(() => void refresh());
 watch(
   () => p.value.region,
   () => {
-    list.items.value = [];
-    list.nextCursor.value = null;
     void refresh();
   },
 );
@@ -101,7 +92,6 @@ function copy(url: string) {
     <view class="anchor-bar"
       ><button @tap="jump('policy-data')">政策数据</button
       ><button :disabled="!policy" @tap="jump('policy-points')">申领要点</button
-      ><button @tap="jump('benefit-news')">相关资讯</button
       ><button @tap="jump('benefit-tools')">实用工具</button></view
     >
     <view class="benefit-body">
@@ -200,30 +190,6 @@ function copy(url: string) {
           </button></view
         >
       </view>
-      <view id="benefit-news" class="benefit-section"
-        ><view class="section-title">最新失业金资讯</view
-        ><view class="section-note"
-          >{{ p.value.region === "310000" ? "上海及全国通用" : "全国通用" }} ·
-          按发布时间排序</view
-        ><view class="feed"
-          ><ContentCard
-            v-for="item in list.items.value"
-            :key="item.id"
-            :item="item"
-          /><ListState
-            :loading="list.loading.value"
-            :error="list.error.value"
-            :empty="!list.items.value.length"
-            @retry="list.load()"
-          /><button
-            v-if="list.nextCursor.value !== null && !list.loading.value"
-            class="more-news"
-            @tap="list.load(true)"
-          >
-            查看更多资讯 ↓
-          </button></view
-        ></view
-      >
       <view id="benefit-tools" class="benefit-section"
         ><view class="section-title">失业金相关工具</view
         ><view class="related-tools"
@@ -475,16 +441,6 @@ function copy(url: string) {
 }
 .source-arrow {
   font-size: 20px;
-}
-.feed {
-  background: #fff;
-  border-radius: 16px;
-  padding: 0 16px;
-}
-.more-news {
-  color: #3677d8;
-  font-size: 12px;
-  padding: 17px;
 }
 .related-tools {
   margin-top: 14px;
